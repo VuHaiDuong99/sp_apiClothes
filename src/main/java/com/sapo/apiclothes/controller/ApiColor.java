@@ -34,19 +34,20 @@ public class ApiColor {
     @PostMapping
     public ResponseEntity<Color> addColor(@RequestBody Color colorSave){
         Color color = colorRepository.save(colorSave);
-        return new ResponseEntity<>(color,HttpStatus.OK);
+        return new ResponseEntity("Success",HttpStatus.OK);
     }
     @PutMapping(value ="/{id}")
     public ResponseEntity<Color> updateColor(@RequestBody Color colorForm,@PathVariable("id") int id){
         Color color = colorRepository.getOne(id);
         color.setName(colorForm.getName());
         Color color1 = colorRepository.save(color);
-        return new ResponseEntity<Color>(color1,HttpStatus.OK);
+        return new ResponseEntity("Success",HttpStatus.OK);
 
     }
     @DeleteMapping(value ="/{id}")
-    public void deleteColor(@PathVariable("id") int id){
+    public ResponseEntity<Void> deleteColor(@PathVariable("id") int id){
         Color color = colorRepository.getOne(id);
         colorRepository.delete(color);
+        return new ResponseEntity("Success",HttpStatus.OK);
     }
 }

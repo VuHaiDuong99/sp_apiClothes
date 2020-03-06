@@ -24,7 +24,7 @@ public class Product implements Serializable {
 	private String name;
 	private String price;
 	//bi-directional many-to-one association to Category
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="category_id")
 
 	private Category category;

@@ -26,20 +26,21 @@ public class ApiCategory {
     public ResponseEntity<Category> getCategoryId(@PathVariable("id") int id ){
         Category category = categoryRepository.getOne(id);
         if(category == null){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity("not found",HttpStatus.NO_CONTENT);
         }
         return  new ResponseEntity<>(category,HttpStatus.OK);
     }
     @PostMapping
     public ResponseEntity<Category> saveCategory(@RequestBody Category categorySave){
         Category category = categoryRepository.save(categorySave);
-        return new ResponseEntity<>(category,HttpStatus.OK);
+        return new ResponseEntity("Success",HttpStatus.OK);
 
     }
     @DeleteMapping(value ="/{id}")
-    public void deleteCat(@PathVariable("id") int id){
+    public ResponseEntity<Void> deleteCat(@PathVariable("id") int id){
         Category category = categoryRepository.getOne(id);
         categoryRepository.delete(category);
+        return new ResponseEntity("Sucesss",HttpStatus.OK);
     }
     @PutMapping(value ="/{id}")
     public ResponseEntity<Category> updateCategory(@RequestBody Category categoryForm,@PathVariable("id") int id){
@@ -49,7 +50,7 @@ public class ApiCategory {
         }
         category.setName(categoryForm.getName());
         Category updateCategory = categoryRepository.save(category);
-        return new ResponseEntity<>(updateCategory,HttpStatus.OK);
+        return new ResponseEntity("Success",HttpStatus.OK);
 
     }
 

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
-
 @RequestMapping(value ="/api/productdetail")
 public class ApiProductDetail {
     @Autowired
@@ -43,7 +42,7 @@ public class ApiProductDetail {
         productDetail.setSize(proForm.getSize());
         productDetail.setAmount(proForm.getAmount());
         ProductDetail pro = productDetailRepostory.save(productDetail);
-        return new ResponseEntity<>(pro,HttpStatus.OK);
+        return new ResponseEntity("Success",HttpStatus.OK);
 
     }
     @DeleteMapping(value = "/{id}")
